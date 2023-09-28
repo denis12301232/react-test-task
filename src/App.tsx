@@ -1,5 +1,5 @@
-const App = () => {
-  return <h1>React</h1>;
-};
+import type { PropsWithChildren } from 'react';
 
-export default App;
+export default function App({ children }: PropsWithChildren) {
+  return <>{children}</>;
+}

@@ -1,0 +1,120 @@
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-auto {
+  flex: 1 1 auto;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-end {
+  justify-content: end;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-end {
+  align-items: end;
+}
+
+.items-start {
+  align-items: start;
+}
+
+.window-height {
+  height: 100vh;
+}
+
+.min-window-height {
+  min-height: 100vh;
+}
+
+.max-window-height {
+  max-height: 100vh;
+}
+
+.max-width {
+  width: 100%;
+}
+
+.text-break {
+  word-break: break-word;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.title1 {
+  letter-spacing: 0.05rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.title2 {
+  letter-spacing: 0.05rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.text-body2 {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.01rem;
+}
+
+.text-body3 {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.01rem;
+}
+
+.first-upper {
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.m-sm {
+  margin: 8px;
+}
+
+.mt-sm {
+  margin-top: 8px;
+}
+
+.mt-md {
+  margin-top: 16px;
+}
+
+.my-sm {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.mx-sm {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.my-md {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.relative {
+  position: relative;
+}

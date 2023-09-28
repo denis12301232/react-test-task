@@ -5,6 +5,10 @@ module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.tsx'),
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      '@': path.resolve(__dirname, '..', 'src/'),
+      '~': path.resolve(__dirname, '..', 'src/components/'),
+    },
   },
   module: {
     rules: [
@@ -24,6 +28,10 @@ module.exports = {
       {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
         type: 'asset/inline',
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },

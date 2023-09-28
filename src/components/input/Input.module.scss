@@ -1,0 +1,47 @@
+.wrapper {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+
+  & .label {
+    font-size: 1rem;
+    opacity: 0.8;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
+    transform-origin: left top;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 30px);
+    pointer-events: none;
+  }
+
+  & .input {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    appearance: none;
+    font-size: 1rem;
+    color: black;
+    background-color: #d2d0d0;
+    padding: 20px 20px 12px 20px;
+    border-radius: 5px;
+    width: 100%;
+    transition: background-color 500ms ease;
+
+    &:hover {
+      background-color: #a9a7a7;
+    }
+
+    &:focus + .label,
+    &:valid + .label {
+      transform: translateY(-70%) scale(0.8);
+      opacity: 0.5;
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "globalCssFiles": ["src/assets/css/atomic.scss"],
+  "include": ["**/*.{vue,tsx}"],
+  "exclude": ["**/*.html"]
+}
