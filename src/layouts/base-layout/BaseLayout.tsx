@@ -5,7 +5,7 @@ export default function BaseLayout({ children }: PropsWithChildren) {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main className="height-header">{children}</main>
     </>
   );
 }

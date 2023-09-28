@@ -1,0 +1,34 @@
+.button {
+  display: inline-block;
+  padding: 8px 16px;
+  user-select: none;
+  line-height: 1.5;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.blue {
+  color: white;
+  background-color: #0062cc;
+  border: 1px solid #0062cc;
+
+  &:hover {
+    opacity: 0.8;
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+  }
+
+  &:enabled:active {
+    background-color: #0252a7;
+    border: 1px solid #0252a7;
+  }
+}

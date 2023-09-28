@@ -2,7 +2,7 @@ import type { IComment } from '@/types';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PostService from '@/api/services/PostService';
-import SimpleLayout from '@/layouts/SimpleLayout';
+import SimpleLayout from '@/layouts/simple-layout/SimpleLayout';
 
 export default function PostId() {
   const { id } = useParams();
@@ -18,10 +18,14 @@ export default function PostId() {
 
   return (
     <SimpleLayout>
-      <div>{id}</div>
+      <h2 className="text-center my-md">Post</h2>
       <ul>
         {comments.map((comment) => (
-          <li key={comment.id}>{comment.body}</li>
+          <li key={comment.id}>
+            <div>{comment.name}</div>
+            <div>{comment.email}</div>
+            <div>{comment.body}</div>
+          </li>
         ))}
       </ul>
     </SimpleLayout>

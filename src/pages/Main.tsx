@@ -1,12 +1,11 @@
 import type { IUser } from '@/types';
 import { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import BaseLayout from '@/layouts/BaseLayout';
+import BaseLayout from '@/layouts/base-layout/BaseLayout';
 import UserService from '@/api/services/UserService';
-import Input from '@/components/input/Input';
+import Input from '~/UI/input/Input';
+import UserList from '~/user-list/UserList';
 
 export default function Main() {
-  const navigate = useNavigate();
   const [users, setUsers] = useState<IUser[]>([]);
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState(false);
@@ -29,49 +28,40 @@ export default function Main() {
     UserService.index().then((users) => setUsers(users));
   }
 
+  function sortFn() {
+    setSort((v) => !v);
+  }
+
   useEffect(() => {
     fetchUsers();
   }, []);
 
   return (
     <BaseLayout>
-      <div className="flex flex-col items-center">
-        <h1 className="text-center">Users</h1>
+      <div
+        className="flex flex-col items-center m-auto"
+        style={{ width: '50%' }}
+      >
+        <h1 className="text-center my-md">Users</h1>
         <Input
-          label="Search..."
+          label="Search by username..."
           classes="mt-md"
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <table className="mt-md">
-          <tbody>
-            <tr>
-              <th onClick={() => setSort((v) => !v)}>Username</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Posts</th>
-              <th>Albums</th>
-            </tr>
-            {sortedAndSearchedUsers.map((user) => (
-              <tr key={user.id}>
-                <td>{user.username}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>
-                  <button onClick={() => navigate(`/users/${user.id}/posts`)}>
-                    Open Posts
-                  </button>
-                </td>
-                <td>
-                  <button onClick={() => navigate(`/users/${user.id}/albums`)}>
-                    Open Albums
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {sortedAndSearchedUsers.length ? (
+          <UserList
+            classes="mt-md mb-md"
+            users={sortedAndSearchedUsers}
+            sortFn={sortFn}
+            sort={sort}
+          />
+        ) : (
+          <div className="my-md" style={{ color: 'red' }}>
+            Nothing was found
+          </div>
+        )}
       </div>
     </BaseLayout>
   );

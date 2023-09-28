@@ -1,0 +1,23 @@
+.header {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.back {
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #ccc;
+  }
+}

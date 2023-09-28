@@ -1,11 +1,11 @@
 import type { IAlbum } from '@/types';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import AlbumService from '@/api/services/AlbumService';
 import { useEffect, useState } from 'react';
-import SimpleLayout from '@/layouts/SimpleLayout';
+import SimpleLayout from '@/layouts/simple-layout/SimpleLayout';
+import Album from '~/album/Album';
 
 export default function Albums() {
-  const navigate = useNavigate();
   const { id } = useParams();
   const [albums, setAlbums] = useState<IAlbum[]>([]);
 
@@ -19,15 +19,15 @@ export default function Albums() {
 
   return (
     <SimpleLayout>
-      <div>{id}</div>
-      <ul>
-        {albums.map((album) => (
-          <li key={album.id}>
-            <h5>{album.title}</h5>
-            <button onClick={() => navigate(`/albums/${album.id}`)}>
-              Open
-            </button>
-          </li>
+      <h2 className="text-center my-md">Albums</h2>
+      <ul className="flex flex-col justify-center items-center">
+        {albums.map((album, index) => (
+          <Album
+            classes="mb-md"
+            key={album.id}
+            album={album}
+            number={index + 1}
+          />
         ))}
       </ul>
     </SimpleLayout>

@@ -2,7 +2,8 @@ import type { IPhoto } from '@/types';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AlbumService from '@/api/services/AlbumService';
-import SimpleLayout from '@/layouts/SimpleLayout';
+import SimpleLayout from '@/layouts/simple-layout/SimpleLayout';
+import Photos from '~/photos/Photos';
 
 export default function AlbumId() {
   const { id } = useParams();
@@ -18,15 +19,10 @@ export default function AlbumId() {
 
   return (
     <SimpleLayout>
-      <div>{id}</div>
-      <ul>
-        {photos.map((photo) => (
-          <li key={photo.id}>
-            <h5>{photo.title}</h5>
-            <img src={photo.url} alt="" />
-          </li>
-        ))}
-      </ul>
+      <h2 className="text-center my-md">Photo</h2>
+      <div className="flex justify-center">
+        <Photos photos={photos} />
+      </div>
     </SimpleLayout>
   );
 }
