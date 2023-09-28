@@ -2,7 +2,7 @@ import type { HTTPError } from 'ky';
 import { useState } from 'react';
 
 export default function useQuery<
-  T extends (...param: Parameters<T>) => Awaited<ReturnType<T>>,
+  T extends (...param: Parameters<T>) => ReturnType<T>,
 >(request: T) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<Awaited<ReturnType<T>> | null>(null);

@@ -1,19 +1,20 @@
-import type { IUser } from '@/types';
 import { useEffect, useMemo, useState } from 'react';
 import BaseLayout from '@/layouts/base-layout/BaseLayout';
 import UserService from '@/api/services/UserService';
 import Input from '~/UI/input/Input';
 import UserList from '~/user-list/UserList';
+import { useQuery } from '@/hooks';
+import Loader from '~/UI/loader/Loader';
 
 export default function Main() {
-  const [users, setUsers] = useState<IUser[]>([]);
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState(false);
+  const { query, data: users, loading, error } = useQuery(UserService.index);
   const searchedUsers = useMemo(
     () =>
-      users.filter((user) =>
+      users?.filter((user) =>
         user.username.toLowerCase().includes(search.toLowerCase())
-      ),
+      ) || [],
     [users, search]
   );
   const sortedAndSearchedUsers = useMemo(
@@ -24,16 +25,12 @@ export default function Main() {
     [sort, searchedUsers]
   );
 
-  function fetchUsers() {
-    UserService.index().then((users) => setUsers(users));
-  }
-
   function sortFn() {
     setSort((v) => !v);
   }
 
   useEffect(() => {
-    fetchUsers();
+    query();
   }, []);
 
   return (
@@ -50,7 +47,10 @@ export default function Main() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        {sortedAndSearchedUsers.length ? (
+        {error && <div className="mt-md">{error.message}</div>}
+        {loading ? (
+          <Loader classes="mt-md" />
+        ) : sortedAndSearchedUsers.length ? (
           <UserList
             classes="mt-md mb-md"
             users={sortedAndSearchedUsers}
