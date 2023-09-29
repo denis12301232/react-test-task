@@ -2,6 +2,7 @@ import type { IPhoto } from '@/types';
 import styles from './Photos.module.scss';
 import Modal from '~/UI/modal/Modal';
 import { useState } from 'react';
+import Image from '~/UI/image/Image';
 
 interface Props {
   photos: IPhoto[];
@@ -19,11 +20,12 @@ export default function Photos({ photos }: Props) {
   return (
     <>
       <Modal visible={visible} setVisible={setVisible}>
-        <img className={styles.image} src={url} alt="" />
+        <Image classes={styles.image} src={url} alt="" />
       </Modal>
       <div className={styles.photos}>
         {photos.map((photo) => (
-          <img
+          <Image
+            classes={styles.photo}
             key={photo.id}
             src={photo.thumbnailUrl}
             alt={photo.title}

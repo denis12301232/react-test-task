@@ -9,7 +9,7 @@ export default function SimpleLayout({ children }: PropsWithChildren) {
   return (
     <>
       <header className={styles.header}>
-        <button className={styles.back} onClick={() => navigate('/')}>
+        <button className={styles.back} onClick={() => navigate(-1)}>
           <Icon name="arrow-back-outline.svg" />
         </button>
       </header>

@@ -5,6 +5,7 @@ import Posts from '@/pages/Posts';
 import Albums from '@/pages/Albums';
 import PostId from '@/pages/PostId';
 import AlbumId from '@/pages/AlbumId';
+import Error from '~/error/Error';
 
 export default createBrowserRouter([
   {
@@ -30,5 +31,9 @@ export default createBrowserRouter([
   {
     path: '/albums/:id',
     element: <AlbumId />,
+  },
+  {
+    path: '*',
+    element: <Error code={404} message="Not found" />,
   },
 ]);

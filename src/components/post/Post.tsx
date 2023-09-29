@@ -6,13 +6,14 @@ import Button from '~/UI/button/Button';
 interface Props {
   post: IPost;
   number: number;
+  classes?: string;
 }
 
-export default function Post({ post, number }: Props) {
+export default function Post({ post, number, classes }: Props) {
   const navigate = useNavigate();
 
   return (
-    <li className={styles.post}>
+    <li className={`${styles.post} ${classes}`}>
       <h4>
         {`${number}. `}
         <span className="first-upper inline-block">{post.title}</span>
@@ -20,8 +21,10 @@ export default function Post({ post, number }: Props) {
 
       <div className="first-upper">
         <div>{post.body}</div>
-        <div>
-          <Button onClick={() => navigate(`/posts/${post.id}`)}>
+        <div className="mt-md">
+          <Button
+            onClick={() => navigate(`/posts/${post.id}`, { state: post })}
+          >
             Show comments
           </Button>
         </div>

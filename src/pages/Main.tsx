@@ -3,8 +3,8 @@ import BaseLayout from '@/layouts/base-layout/BaseLayout';
 import UserService from '@/api/services/UserService';
 import Input from '~/UI/input/Input';
 import UserList from '~/user-list/UserList';
-import { useQuery } from '@/hooks';
 import Loader from '~/UI/loader/Loader';
+import { useQuery } from '@/hooks';
 
 export default function Main() {
   const [search, setSearch] = useState('');
@@ -31,7 +31,7 @@ export default function Main() {
 
   useEffect(() => {
     query();
-  }, []);
+  }, [query]);
 
   return (
     <BaseLayout>

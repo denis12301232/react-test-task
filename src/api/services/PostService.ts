@@ -6,6 +6,10 @@ export default class PostService {
     return $api.get(`users/${id}/posts`).json<IPost[]>();
   }
 
+  static show(postId: string) {
+    return $api.get('posts', { searchParams: { id: postId } }).json<IPost[]>();
+  }
+
   static getComments(postId: string) {
     return $api.get(`posts/${postId}/comments`).json<IComment[]>();
   }

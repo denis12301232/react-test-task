@@ -1,5 +1,5 @@
 import type { HTTPError } from 'ky';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export default function useQuery<
   T extends (...param: Parameters<T>) => ReturnType<T>,
@@ -16,5 +16,5 @@ export default function useQuery<
       .finally(() => setLoading(false));
   }
 
-  return { query, loading, data, error };
+  return { query: useCallback(query, []), loading, data, error };
 }
